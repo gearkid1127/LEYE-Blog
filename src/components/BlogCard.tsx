@@ -1,15 +1,9 @@
 import { Pressable, Text, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
+import { RootStackParamList } from '../types/navigation';
 import { Blog } from '../types/blog';
 
-type RootStackParamList = {
-  Home: undefined;
 
-  BlogDetail: {
-    blog: Blog;
-  };
-};
 
 type Props = {
   blog: Blog;

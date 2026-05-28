@@ -6,13 +6,7 @@ import { Blog } from "../types/blog";
 import BlogCard from "../components/BlogCard";
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
-type RootStackParamList = {
-  Home: undefined;
-  BlogDetail: {
-    blog: Blog;
-  };
-};
+import { RootStackParamList } from '../types/navigation';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
