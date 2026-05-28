@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { useEffect, useState } from "react";
+import { FlatList, Text, View } from "react-native";
 
-import { fetchBlogs } from '../services/api';
-import { Blog } from '../types/blog';
+import { fetchBlogs } from "../services/api";
+import { Blog } from "../types/blog";
+import BlogCard from "../components/BlogCard";
 
 export default function HomeScreen() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -28,8 +29,8 @@ export default function HomeScreen() {
       <View
         style={{
           flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Text>Loading...</Text>
@@ -41,16 +42,7 @@ export default function HomeScreen() {
     <FlatList
       data={blogs}
       keyExtractor={(item) => item.ID.toString()}
-      renderItem={({ item }) => (
-        <View
-          style={{
-            padding: 16,
-            borderBottomWidth: 1,
-          }}
-        >
-          <Text>{item.title}</Text>
-        </View>
-      )}
+      renderItem={({ item }) => <BlogCard blog={item} />}
     />
   );
 }
