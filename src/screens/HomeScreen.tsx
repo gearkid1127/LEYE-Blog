@@ -7,6 +7,7 @@ import BlogCard from "../components/BlogCard";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -57,62 +58,64 @@ export default function HomeScreen({ navigation }: Props) {
       : blogs.filter((blog) => blog.topics.includes(selectedTopic));
 
   return (
-    <View style={{ flex: 1 }}>
-      <Text
-        style={{
-          fontSize: 36,
-          fontWeight: "700",
-          color: "#3A3036",
-          paddingHorizontal: 16,
-          paddingTop: 48,
-          paddingBottom: 16,
-        }}
-      >
-        Newsfeed
-      </Text>
-      <View
-        style={{
-          flexDirection: "row",
-          paddingHorizontal: 16,
-          paddingTop: 16,
-          borderBottomWidth: 1,
-          borderBottomColor: "#E5E5E5",
-        }}
-      >
-        {TOPICS.map((topic) => {
-          const isActive = selectedTopic === topic;
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <Text
+          style={{
+            fontSize: 36,
+            fontWeight: "700",
+            color: "#3A3036",
+            paddingHorizontal: 16,
+            paddingTop: 48,
+            paddingBottom: 16,
+          }}
+        >
+          Newsfeed
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            paddingHorizontal: 16,
+            paddingTop: 16,
+            borderBottomWidth: 1,
+            borderBottomColor: "#E5E5E5",
+          }}
+        >
+          {TOPICS.map((topic) => {
+            const isActive = selectedTopic === topic;
 
-          return (
-            <Pressable
-              key={topic}
-              onPress={() => setSelectedTopic(topic)}
-              style={{
-                marginRight: 24,
-                paddingBottom: 8,
-                borderBottomWidth: isActive ? 3 : 0,
-                borderBottomColor: "#168A3A",
-              }}
-            >
-              <Text
+            return (
+              <Pressable
+                key={topic}
+                onPress={() => setSelectedTopic(topic)}
                 style={{
-                  color: isActive ? "#258834" : "#194A23",
-                  fontWeight: isActive ? "700" : "400",
+                  marginRight: 24,
+                  paddingBottom: 8,
+                  borderBottomWidth: isActive ? 3 : 0,
+                  borderBottomColor: "#168A3A",
                 }}
               >
-                {topic}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+                <Text
+                  style={{
+                    color: isActive ? "#258834" : "#194A23",
+                    fontWeight: isActive ? "700" : "400",
+                  }}
+                >
+                  {topic}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
 
-      <FlatList
-        data={filteredBlogs}
-        keyExtractor={(item) => item.ID.toString()}
-        renderItem={({ item }) => (
-          <BlogCard blog={item} navigation={navigation} />
-        )}
-      />
-    </View>
+        <FlatList
+          data={filteredBlogs}
+          keyExtractor={(item) => item.ID.toString()}
+          renderItem={({ item }) => (
+            <BlogCard blog={item} navigation={navigation} />
+          )}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
