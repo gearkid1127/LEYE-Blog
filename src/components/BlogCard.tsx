@@ -41,15 +41,24 @@ export default function BlogCard({ blog, navigation }: Props) {
         >
           <Text
             style={{
-              fontSize: 18,
-              fontWeight: "600",
+              fontSize: 17,
+              fontWeight: "700",
               marginBottom: 8,
+              color: "#3A3036"
             }}
           >
             {blog.title}
           </Text>
 
-          <Text>{blog.created_at}</Text>
+          <Text
+            style={{
+              fontSize: 15,
+              color: "#41424A",
+              fontWeight: "400",
+            }}
+          >
+            {blog.created_at}
+          </Text>
         </View>
       </View>
     </Pressable>
