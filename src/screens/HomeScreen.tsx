@@ -5,7 +5,25 @@ import { fetchBlogs } from "../services/api";
 import { Blog } from "../types/blog";
 import BlogCard from "../components/BlogCard";
 
-export default function HomeScreen() {
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type RootStackParamList = {
+  Home: undefined;
+  BlogDetail: {
+    blog: Blog;
+  };
+};
+
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
+
+type Props = {
+  navigation: HomeScreenNavigationProp;
+};
+
+export default function HomeScreen({ navigation }: Props) {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,7 +60,9 @@ export default function HomeScreen() {
     <FlatList
       data={blogs}
       keyExtractor={(item) => item.ID.toString()}
-      renderItem={({ item }) => <BlogCard blog={item} />}
+      renderItem={({ item }) => (
+        <BlogCard blog={item} navigation={navigation} />
+      )}
     />
   );
 }
