@@ -58,13 +58,25 @@ export default function HomeScreen({ navigation }: Props) {
 
   return (
     <View style={{ flex: 1 }}>
+      <Text
+        style={{
+          fontSize: 36,
+          fontWeight: "700",
+          color: "#3A3036",
+          paddingHorizontal: 16,
+          paddingTop: 48,
+          paddingBottom: 16,
+        }}
+      >
+        Newsfeed
+      </Text>
       <View
         style={{
           flexDirection: "row",
           paddingHorizontal: 16,
           paddingTop: 16,
           borderBottomWidth: 1,
-          borderBottomColor: "#E5E7EB",
+          borderBottomColor: "#E5E5E5",
         }}
       >
         {TOPICS.map((topic) => {
@@ -83,7 +95,7 @@ export default function HomeScreen({ navigation }: Props) {
             >
               <Text
                 style={{
-                  color: isActive ? "#168A3A" : "#3A3036",
+                  color: isActive ? "#258834" : "#194A23",
                   fontWeight: isActive ? "700" : "400",
                 }}
               >
