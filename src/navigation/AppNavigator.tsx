@@ -11,7 +11,7 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name="Newsfeed"
           component={HomeScreen}
         />
         <Stack.Screen
