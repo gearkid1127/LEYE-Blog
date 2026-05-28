@@ -1,7 +1,9 @@
 import { Image, Pressable, Text, View } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 import { RootStackParamList } from "../types/navigation";
 import { Blog } from "../types/blog";
+import isNewPost from "../utils/isNewPost";
 
 type Props = {
   blog: Blog;
@@ -9,12 +11,11 @@ type Props = {
 };
 
 export default function BlogCard({ blog, navigation }: Props) {
+  const isNew = isNewPost(blog.created_at);
   return (
     <Pressable
       onPress={() => {
-        navigation.navigate("BlogDetail", {
-          blog,
-        });
+        navigation.navigate("BlogDetail", { blog });
       }}
     >
       <View
@@ -24,14 +25,48 @@ export default function BlogCard({ blog, navigation }: Props) {
           gap: 12,
         }}
       >
-        <Image
-          source={{ uri: blog.featured_image.url }}
+        <View
           style={{
+            position: "relative",
             width: 150,
             height: 100,
             borderRadius: 4,
+            overflow: "hidden",
           }}
-        />
+        >
+          <Image
+            source={{ uri: blog.featured_image.url }}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+
+          {isNew && (
+            <View
+              style={{
+                position: "absolute",
+                top: 8,
+                left: 8,
+                backgroundColor: "#168A3A",
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                borderRadius: 999,
+                zIndex: 1,
+              }}
+            >
+              <Text
+                style={{
+                  color: "#FFFFFF",
+                  fontSize: 12,
+                  fontWeight: "700",
+                }}
+              >
+                NEW!
+              </Text>
+            </View>
+          )}
+        </View>
 
         <View
           style={{
@@ -44,7 +79,7 @@ export default function BlogCard({ blog, navigation }: Props) {
               fontSize: 17,
               fontWeight: "700",
               marginBottom: 8,
-              color: "#3A3036"
+              color: "#3A3036",
             }}
           >
             {blog.title}
