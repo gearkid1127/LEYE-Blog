@@ -40,9 +40,9 @@ export default function HomeScreen({ navigation }: Props) {
     loadBlogs();
   }, []);
 
- if (loading) {
-  return <HomeSkeleton />;
-}
+  if (loading) {
+    return <HomeSkeleton />;
+  }
   const filteredBlogs =
     selectedTopic === "All Articles"
       ? blogs
@@ -105,6 +105,38 @@ export default function HomeScreen({ navigation }: Props) {
           renderItem={({ item }) => (
             <BlogCard blog={item} navigation={navigation} />
           )}
+          ListEmptyComponent={
+            <View
+              style={{
+                padding: 24,
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: "700",
+                  color: "#3A3036",
+                  marginBottom: 8,
+                  textAlign: "center",
+                }}
+              >
+                No articles found
+              </Text>
+
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: "#41424A",
+                  textAlign: "center",
+                  lineHeight: 22,
+                }}
+              >
+                There are no articles for this topic right now. Check back soon
+                for new updates.
+              </Text>
+            </View>
+          }
         />
       </View>
     </SafeAreaView>
