@@ -46,7 +46,7 @@ export default function BlogDetailScreen({ route, navigation }: Props) {
             elevation: 4,
           }}
         >
-          <Ionicons name="arrow-back" size={24} color="#3A3036" />‹
+          <Ionicons name="arrow-back" size={24} color="#3A3036" />
         </Pressable>
         <Image
           source={{ uri: blog.featured_image.url }}

@@ -4,6 +4,7 @@ import { Pressable, FlatList, Text, View } from "react-native";
 import { fetchBlogs } from "../services/api";
 import { Blog } from "../types/blog";
 import BlogCard from "../components/BlogCard";
+import HomeSkeleton from "../components/HomeSkeleton";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
@@ -39,19 +40,9 @@ export default function HomeScreen({ navigation }: Props) {
     loadBlogs();
   }, []);
 
-  if (loading) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
+ if (loading) {
+  return <HomeSkeleton />;
+}
   const filteredBlogs =
     selectedTopic === "All Articles"
       ? blogs
