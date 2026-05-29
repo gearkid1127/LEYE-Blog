@@ -71,14 +71,14 @@ export default function BlogCard({ blog, navigation }: Props) {
         <View
           style={{
             flex: 1,
-            justifyContent: "center",
+            
           }}
         >
           <Text
             style={{
               fontSize: 17,
               fontWeight: "700",
-              marginBottom: 8,
+              marginBottom: 16,
               color: "#3A3036",
             }}
           >
