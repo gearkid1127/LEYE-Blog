@@ -1,5 +1,6 @@
 import {
   Image,
+  Pressable,
   ScrollView,
   Text,
   View,
@@ -8,18 +9,45 @@ import {
 import RenderHtml from "react-native-render-html";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../types/navigation";
 
 type Props = NativeStackScreenProps<RootStackParamList, "BlogDetail">;
 
-export default function BlogDetailScreen({ route }: Props) {
+export default function BlogDetailScreen({ route, navigation }: Props) {
   const { blog } = route.params;
   const { width } = useWindowDimensions();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+        <Pressable
+          onPress={() => navigation.goBack()}
+          style={{
+            position: "absolute",
+            top: 16,
+            left: 16,
+            width: 44,
+            height: 44,
+            borderRadius: 22,
+            backgroundColor: "#FFFFFF",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 10,
+
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.15,
+            shadowRadius: 4,
+            elevation: 4,
+          }}
+        >
+          <Ionicons name="arrow-back" size={24} color="#3A3036" />‹
+        </Pressable>
         <Image
           source={{ uri: blog.featured_image.url }}
           style={{
