@@ -80,6 +80,7 @@ export default function BlogCard({ blog, navigation }: Props) {
               fontWeight: "700",
               marginBottom: 16,
               color: "#3A3036",
+              lineHeight: 22,
             }}
           >
             {blog.title}
@@ -90,6 +91,7 @@ export default function BlogCard({ blog, navigation }: Props) {
               fontSize: 15,
               color: "#41424A",
               fontWeight: "400",
+              lineHeight: 22,
             }}
           >
             {blog.created_at}
